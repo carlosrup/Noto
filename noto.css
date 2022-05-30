@@ -1,0 +1,349 @@
+html {
+
+    font-size: 3.2vmin;
+    background-color: #f1f4f7;
+    width: 99%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+span.material-icons-outlined {
+    font-size: 3.2vmin;
+    color: rgba(250, 250, 250, 0.952);
+}
+
+.container {
+    display: flex;
+    background-color: rgb(232, 234, 236);
+    top: 0;
+    left: 0;
+    position: relative;
+}
+
+.side_menu {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-self: center;
+    align-items: center;
+    justify-content: space-evenly;
+    border-top-right-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    left: 0;
+    background-color: rgb(128, 125, 125);
+    font-size: 1rem;
+    list-style: none;
+    order: 1;
+    flex: 5%;
+    height: 90vh;
+}
+
+.side_menu, li {
+  display :flex;
+  align-self: center;
+  padding: 0.1rem;
+}
+
+.hover_change_color:hover {
+  background-color: rgb(105, 103, 103);
+  border-radius: 20%;
+  cursor: pointer;
+}
+
+.main_area {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    order: 3;
+    top: 1.5vh;
+    left: 1px;
+    flex: 99%;
+    width: 60%;
+    height: 90%;
+}
+
+/* para centar el texto del place holder en todos los navegadores */
+.insert_title {
+  text-align: left;
+  padding: 0.5rem;
+  margin: 0.1rem 0.1rem;
+  font-size: 0.7rem;
+  overflow: hidden;
+  
+}
+
+::-webkit-.insert_title-placeholder {
+  text-align: left;
+  padding: 0.5rem;
+  margin: 0.1rem 0.1rem;
+  font-size: 1rem;
+}
+
+:-moz-placeholder {
+  text-align: left;
+  padding: 0.5rem;
+  margin: 0.1rem 0.1rem;
+  font-size: 1rem;
+}
+.insert_title:focus {
+  outline: none;
+}
+
+.insert_title:hover, .tags:hover, #ppal_nota:hover {
+  border-color:rgb(150, 148, 147);
+}
+
+textarea {
+  padding: 0.5rem;
+  padding: 0.5rem;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.insert_title, #ppal_nota, #tags_nota {
+    position: relative;
+    width: 100%;
+    left: 0%;
+    height: auto;
+    border: solid 0.5px rgb(194, 190, 190);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#tags_nota {
+  height: 1.3rem;
+  overflow-y: hidden;
+}
+
+#ppal_nota {
+    height: 80vh;
+}
+
+#underlying_div {
+    position: relative;
+    top: -3vh;
+    left: -7vw;
+}
+/* .tags {
+  text-align: left;
+  padding: 0.5rem;
+  margin: 0.1rem 0.1rem;
+  font-size: 0.7rem;
+  margin-bottom: 1rem;
+} */
+
+#save_note > .material-icons-outlined, 
+#new_note > .material-icons-outlined,
+#restore > .material-icons-outlined {
+    position: absolute;
+    display: flex;
+    left: 97%;
+    bottom: 0%;
+    width: 6vw;
+    height: 6vw;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(182, 178, 178);
+    color: rgba(250, 250, 250, 0.952);
+    z-index: 10;
+    border-radius: 50% ;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+#save_note, #new_note, #restore {
+  visibility: hidden;
+  opacity: 0;
+  transition: 1s;
+}
+
+#lista_notas, #trash_list {
+  display: flex;
+  flex-direction: column;
+  position: absolute;  
+  align-self: center;
+  justify-self: center;
+  overflow-y: auto;
+  overflow-x:hidden;
+  width: 19.5vw;
+  height: 88vh;
+  top: -100vh;
+  left: 5%;
+  padding-top: 0.5rem;
+  background-color: rgb(210, 210, 210);
+  border-radius: 0.5rem;
+  border-width: 0.1rem;
+  order: 2;
+  z-index: 4;
+}
+
+.lista_titulo {
+  font-size: 0.5rem;
+  padding: 0.2em 0.3rem 0.1rem;
+  font-weight: bold;
+  
+}
+
+.lista_texto {
+  font-size: 0.4rem;
+  padding: 0.1rem 0.4rem 0.2rem;  
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.titulo_y_texto {
+  display: flex;
+  flex-direction: column;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin : 0.2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(230, 227, 227);
+  color: rgb(90, 88, 88);
+}
+
+.all_notes, .trash {
+  font-size: 0.7rem;
+  text-align: center;
+  background-color: rgb(146, 146, 148);
+  padding: 0.2rem;
+  color:white;
+  pointer-events: none;
+  
+}
+
+.titulo_y_texto:hover {
+  color: rgb(46, 45, 45);
+  background-color: rgb(201, 199, 199);
+  cursor: pointer;  
+}
+
+.delete {
+  visibility: hidden;
+  display: flex;
+  position: absolute;
+  right: 0.1rem;
+  background-color: rgba(201, 199, 199);  
+  border-radius: 50%;
+  margin-top: -0.3rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  align-items: center;
+  color: black;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+/* .restore {
+  visibility: visible;
+  display: flex;
+  position: absolute;
+  right: 0rem;
+  background-color: rgba(201, 199, 199);  
+  border-radius: 50%;
+  margin-top: -0.3rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  opacity: 1;
+  transition: 0.4s;
+} */
+
+.delete>span {
+  display: inline-block;
+  position: relative;
+  color: rgb(128, 123, 123);
+  font-size: 0.7rem;
+  padding-left: 0.2rem;
+  padding-top: 0.05rem;
+}  
+
+/* .restore>input {
+  display: flex;
+  position: relative;
+  color: rgb(230, 227, 227);
+  font-size: 0.75rem;  
+}  
+ */
+.titulo_y_texto:hover >.delete {
+  visibility: visible;
+  opacity: 1;
+}
+.titulo_y_texto:hover >.restore {
+  visibility: visible;
+  opacity: 1;
+}
+.delete .tooltip_delete {
+  visibility: hidden;
+  width: auto;
+  font-size: 0.4rem;
+  background-color: rgba(199, 196, 196, 0.7);
+  color: #58585a;
+  text-align: center;
+  border-radius: 20%;
+  padding: 0.1rem 0.1rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 0.1rem;
+  left: -1.3rem;
+  margin-left: 0;
+  opacity: 0;
+  transition: 0.4s;
+}
+/* .restore .tooltip_restore {
+  visibility: hidden;
+  width: auto;
+  font-size: 0.4rem;
+  background-color: rgba(199, 196, 196, 0.7);
+  color: #58585a;
+  text-align: center;
+  border-radius: 20%;
+  padding: 0.1rem 0.1rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 0.1rem;
+  left: -1.5rem;
+  margin-left: 0;
+  opacity: 0;
+  transition: 0.4s;
+} */
+.tooltip_save, .tooltip_add, .tooltip_restore {
+  visibility: hidden;
+  width: 4rem;
+  font-size: 0.7rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: rgb(236, 231, 255);
+  color: #959799;
+  text-align: center;
+  border-radius: 9%;
+  position: absolute;
+  z-index: 1;
+  bottom: 6.5vw;
+  left: 90vw;
+  margin-left: 0;
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.delete:hover .tooltip_delete {
+  visibility: visible;
+  opacity: 1;
+ }
+ .restore:hover .tooltip_restore {
+  visibility: visible;
+  opacity: 1;
+ }
+ #save_note:hover .tooltip_save, 
+ #new_note:hover .tooltip_add,
+ #restore:hover .tooltip_restore
+ {
+  visibility: visible;
+  opacity: 1;
+ }

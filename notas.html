@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"> <!-- iconos de google -->
+    <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./noto.css">
+  
+   
+    <title>Noto</title>
+</head>
+<body>
+    
+    <main class="container"
+        id="container">
+        <ul class="side_menu" id="colap-menu">
+            
+            <li class="hover_change_color" 
+                class="iconos-goole" 
+                class="menu_click"
+                id="menu">
+                <span id="menu" class="material-icons-outlined">
+                    menu
+                    </span>
+            </li>
+            <!-- <li class="hover_change_color" class="iconos-goole" id="add-new">
+                <span class="material-icons-outlined">
+                    add
+                    </span>
+            </li> -->
+            <li class="hover_change_color" class="iconos-goole" id="trash">
+                <span id="trash" class="material-icons-outlined">
+                    delete
+                    </span>
+            </li><!-- papelera -->
+            <li class="hover_change_color" class="iconos-goole" id="settings">
+                <span id="settings" class="material-icons-outlined">
+                    settings
+                    </span>
+            </li>
+        </ul>
+        
+        <!-- div donde aparce la lista de notas -->
+        <div id="lista_notas" class="lista_notas">            
+            <div class="all_notes titulo_y_texto">All Notes</div>
+        </div>
+        <div id="trash_list">
+            <div class="trash titulo_y_texto">Trash</div>
+        </div>
+
+        <div class="main_area"
+            id="main_area">
+            
+            <textarea name="titulo" 
+                rows="1"
+                class="textarea" 
+                placeholder="Title" 
+                id="titulo_nota"
+                oninput="saveNotoTitle()"
+            ></textarea>
+            <textarea name="texto_nota" 
+                id="ppal_nota" 
+                class="textarea"
+                oninput="saveNotoText()"
+                placeholder="Type here!"
+            ></textarea>
+            <div id="underlying_div">
+                <div id="save_note"> 
+                    <span class="material-icons-outlined">
+                        save
+                    </span>
+                    <span id="save_note" class="tooltip_save" >
+                        Save note
+                    </span>
+                </div>
+                <div id="new_note">
+                    <span class="material-icons-outlined">add</span>
+                    <span id="new_note" class="tooltip_add" >
+                        New note
+                    </span>
+                </div>
+                <div id="restore">
+                    <span class="material-icons-outlined">file_upload</span>
+                    <span id="restore" class="tooltip_restore" >
+                        Restore
+                    </span>
+                </div>
+            </div>
+            <div class="tags_div">
+                <textarea name="tags" 
+                    class="textarea" 
+                    placeholder="Tags" 
+                    id="tags_nota"
+                    oninput="saveNotoTags()"
+                ></textarea>
+            </div>
+        </div>
+       
+       
+    </main>
+    <script src="./events.js" ></script>
+    <script src="./noto.js" ></script>    
+
+    <div id="pop_up">
+    </div>
+
+</body>
+
+<!-- accion borrar * about * keybindings * trash * archives * all files * setings - cuenta-->
+<!-- <footer>
+    <a href="https://www.flaticon.es/iconos-gratis/almacenamiento" title="almacenamiento iconos">Almacenamiento iconos creados por Vector Stall - Flaticon</a>
+</footer> -->
+</html>
