@@ -25,7 +25,7 @@ let saveNotoTags = (id) => {
    
     if (document.getElementById("tags_nota").innerHTML != 'Tags'){
         let tags = get_tags_displayed(id)
-        console.log(tags)
+        console.log(document.getElementById("tags_nota"))
         return tags;
     } 
 }

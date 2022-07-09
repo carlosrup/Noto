@@ -478,8 +478,15 @@ function delete_tag(element){
 }
 
 function get_tags_displayed (id){
-   
-    const tags_nodes = document.querySelectorAll('.'+CSS.escape(id));
+   let tags_nodes;
+    if(document.querySelectorAll('.'+CSS.escape(id)).length >0){
+         tags_nodes = document.querySelectorAll('.'+CSS.escape(id));
+    }
+    else {
+         tags_nodes =document.querySelectorAll('.'+CSS.escape(0));
+    }
+    
+    console.log(tags_nodes)
     let tags = '';
     tags_nodes.forEach(element=>{
         
