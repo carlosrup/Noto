@@ -26,16 +26,17 @@
                     menu
                     </span>
             </li>
-            <!-- <li class="hover_change_color" class="iconos-goole" id="add-new">
-                <span class="material-icons-outlined">
-                    add
-                    </span>
-            </li> -->
             <li class="hover_change_color" class="iconos-goole" id="trash">
                 <span id="trash" class="material-icons-outlined">
                     delete
                     </span>
-            </li><!-- papelera -->
+            </li>
+             <!-- tags -->
+             <li class="hover_change_color" class="iconos-goole" id="tags_icon">
+                <span id="tags_icon" class="material-icons-outlined">
+                    sell
+                    </span>
+            </li>
             <li class="hover_change_color" class="iconos-goole" id="settings">
                 <span id="settings" class="material-icons-outlined">
                     settings
@@ -50,7 +51,9 @@
         <div id="trash_list">
             <div class="trash titulo_y_texto">Trash</div>
         </div>
-
+        <div id="tags_list">
+            <div class="all_notes titulo_y_texto unique_tags_list">Tags</div>
+        </div>
         <div class="main_area"
             id="main_area">
             
@@ -89,16 +92,12 @@
                     </span>
                 </div>
             </div>
-            <div class="tags_div">
-                <textarea name="tags" 
-                    class="textarea" 
-                    placeholder="Tags" 
-                    id="tags_nota"
-                    oninput="saveNotoTags()"
-                ></textarea>
+            <div id="tags_nota" contentEditable= false class="tags_div">Tags</div>
+            <div id="predicted_tag">
+                <ul id="list_sugested_tag"></ul>
             </div>
         </div>
-       
+        
        
     </main>
     <script src="./events.js" ></script>
