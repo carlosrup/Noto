@@ -343,10 +343,12 @@ async function list_all_tags (){
 
 function create_tag_menu (){
     let tags_object;
+    
     list_all_tags().then(result=>{
         tags_object = result
+        let alpha_order, ordered;
         const to_array = Object.entries(tags_object);
-        const alpha_order = to_array.sort((a, b)=>{
+        alpha_order = to_array.sort((a, b)=>{
             if(a[0] < b[0]){
                 return -1}
             if(a[0] > b[0]){
@@ -354,11 +356,17 @@ function create_tag_menu (){
             if(a[0] == b[0]){
                     return 0}
         });
-        const ordered = alpha_order.sort((a, b)=>{
+        ordered = alpha_order.sort((a, b)=>{
            return  b[1].length - a[1].length
         });
-        console.log(ordered)
-        ordered.forEach((element)=>{    
+    
+        // erase nodes in tags_list
+        document.getElementById('tags_list')
+            .innerHTML = `<div class="all_notes titulo_y_texto unique_tags_list">Tags</div>`
+        
+        
+        // creates new nodes
+        ordered.forEach((element)=>{    // element[0] is the tag value element[1] are the ids
             divTags = document.createElement('div');
             divTags.classList.add('tag_listed');
             
@@ -370,10 +378,12 @@ function create_tag_menu (){
             tagNode = document.createTextNode(element[0]);
             divTags.appendChild(tagNode);
             tags_list.appendChild(divTags);
+            
         });
+        console.log(tags_list.childNodes.length)
     });
 }
-create_tag_menu()
+/* create_tag_menu() */
 
 function expand_note_tag_list (tag_listed){
     const list = tag_listed.classList;
@@ -589,34 +599,7 @@ function get_property_from_Db (id){
         }
     });
 }
-/* async function create_tag_list(){
-      
-    const request = indexedDB.open("noto", 1);
-        request.onsuccess = (event) => {
-            
-            var db = event.target.result;
-            data = db.transaction("nota", 'readwrite')
-                .objectStore("nota")
-                .index("idDb")
-                .openCursor(null, 'prev');
-                
-            data.onsuccess = (e) => {
-                
-                
-                data_cursor =  e.target.result;
-                    if (data_cursor) {
-                        console.log(data_cursor.value.tags)
-                        tag_list.push(data_cursor.value.tags);                        
-                        data_cursor.continue();  
-                        console.log(tag_list)
-                    };
-                
-            }
-            
-            let result = await tag_list
-        }
-    
-} */
+
 
 function create_tag_list(){
     return new Promise (function(resolve){  

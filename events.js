@@ -70,6 +70,7 @@ const clickId = (event)=>{
     }
     if(elementId == 'tags_icon'){
         menu_click_show(elementId)
+        create_tag_menu()
     }
     if (element.parentNode.className == 'titulo_y_texto'){
         let elementParent = element.parentNode;
@@ -138,7 +139,7 @@ const clickId = (event)=>{
 
         let div_tag = element;
         console.log(expanded_div)
-        console.log(div_tag)        
+        
         if(document.getElementById('container_note') &&
             expanded_div == div_tag){
             
@@ -236,13 +237,14 @@ function show_list (lista){
     document.getElementById("ppal_nota").style.transition = "0.3s";
     document.getElementById("tags_nota").style.transition = "0.3s";
     document.getElementById("underlying_div").style.transition = "0.3s";
-
+    
     document.getElementById(lista).style.top = "2vh";
     document.getElementById("titulo_nota").style.width = "78%";
     document.getElementById("ppal_nota").style.width = "78%";
     document.getElementById("tags_nota").style.width = "78%";
     document.getElementById("main_area").style.left = "20%";
     document.getElementById("underlying_div").style.left = "-27vw";
+    /* document.getElementById("predicted_tag").style.left = "22%"; */
     show = true
 }
 function hide_list(lista) {
@@ -253,13 +255,14 @@ function hide_list(lista) {
     document.getElementById("ppal_nota").style.transition = "all 0.3s 0.3s";
     document.getElementById("tags_nota").style.transition = "all 0.3s 0.3s";
     document.getElementById("underlying_div").style.transition = "all 0.3s 0.3s";
-    
+       
     document.getElementById(lista).style.top = "-100vh";
     document.getElementById("titulo_nota").style.width = "100%";
     document.getElementById("ppal_nota").style.width = "100%";
     document.getElementById("tags_nota").style.width = "100%";
     document.getElementById("main_area").style.left = "0%";
     document.getElementById("underlying_div").style.left = "-7vw";
+    /* document.getElementById("predicted_tag").style.left = "6%"; */
     show = false
 }
 
@@ -486,7 +489,6 @@ function get_tags_displayed (id){
          tags_nodes =document.querySelectorAll('.'+CSS.escape(0));
     }
     
-    console.log(tags_nodes)
     let tags = '';
     tags_nodes.forEach(element=>{
         
@@ -536,7 +538,9 @@ async function predict_tag(span, event){
             container.style.display = 'none'
             return filtered_list = [];
         }
-        
+        span.addEventListener('click', (e)=>{  // clear chars if span is clicked again
+            chars = ''
+        });
     }
     return await filtering(span, event);
 }
@@ -562,13 +566,13 @@ function list_sugested_tag(span, event){
             list.innerHTML = ''
             container.style.display = 'none'
         }
-
+        const parent_width = container.parentElement.offsetWidth
         const list_heigth = container.offsetHeight;
         let new_left = '';
         let [left, top] = element_position(span)
-        let left_correction = Number(screen.width)/20
+        let left_correction = Number(screen.width)-(screen.width * 1.008) 
         
-        top = String(Number(top) - Number(list_heigth))
+        top = String(Number(top) - Number(list_heigth) - 6)
         new_left = String(Number(left) + left_correction)
         
         container.style.left = new_left +'px'
@@ -635,6 +639,7 @@ function select_predicted_tags(event, click){
         element.contentEditable = true;
         document.getElementById('tags_nota').click();
         new_tag.contentEditable = false;
+        create_tag_menu();
         
         if(noto_was_displayed){
             save_edited_note(displayed_note_id);

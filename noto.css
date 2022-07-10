@@ -378,9 +378,9 @@ textarea:focus {
  }
  #predicted_tag{
   display:none;
-  position: fixed;
+  position: absolute;
   padding: 0.1rem;
-  left: 0;
+  left: 6%;
   height: auto;
   border: solid;
   border-color: #dde0e2;
