@@ -122,7 +122,7 @@ function add_note_to_DOM (id, titulo, texto, tags, list) {
     
     divTitulo.className = 'lista_titulo';
     divTexto.className = 'lista_texto';
-    divTags.className = 'Tags';
+    divTags.className = 'tags';
     divTitText.className = 'titulo_y_texto'
     divTitText.id = id
     divDelete.className = 'delete'
@@ -383,7 +383,7 @@ function create_tag_menu (){
         console.log(tags_list.childNodes.length)
     });
 }
-/* create_tag_menu() */
+create_tag_menu()
 
 function expand_note_tag_list (tag_listed){
     const list = tag_listed.classList;

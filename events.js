@@ -56,7 +56,7 @@ const clickId = (event)=>{
     }
     if(elementId == 'trash'){
         menu_click_show(elementId)
-        clear_textareas();
+        /* clear_textareas(); */
         disable_textarea(true);
         text_area_is_disabled = true;
         button_show_hide('hide', 'save_note')
@@ -444,10 +444,12 @@ function create_tag_text (_span, event){
         element.contentEditable = true;
         document.getElementById('tags_nota').click();
         new_tag.contentEditable = false;
+        create_tag_menu()
         
         if(noto_was_displayed){
             save_edited_note(displayed_note_id);
             button_show_hide('show', 'new_note')
+            create_tag_menu();
         }
     }
 }
@@ -482,16 +484,16 @@ function delete_tag(element){
 
 function get_tags_displayed (id){
    let tags_nodes;
-    if(document.querySelectorAll('.'+CSS.escape(id)).length >0){
-         tags_nodes = document.querySelectorAll('.'+CSS.escape(id));
+   let tags = '';
+    if(document.querySelectorAll('.' + CSS.escape(id)).length >0){
+         tags_nodes = document.querySelectorAll('span' + '.'+CSS.escape(id));
     }
     else {
          tags_nodes =document.querySelectorAll('.'+CSS.escape(0));
     }
     
-    let tags = '';
     tags_nodes.forEach(element=>{
-        
+        console.log(tags_nodes)
         let word = element.innerText;
             word = word.slice(0, word.length -5);
             word = word.replace(/^\s+|\s+$/gm,'');// quita espacios en blanco
@@ -505,6 +507,7 @@ async function predict_tag(span, event){
     var used_tags_list = [];
     async function filtering (span, event){
         used_tags_list =  await create_tag_list()
+        
         let character = event.key;
         
         if ((event.keyCode >= 48 && event.keyCode <= 57) || 
@@ -644,6 +647,7 @@ function select_predicted_tags(event, click){
         if(noto_was_displayed){
             save_edited_note(displayed_note_id);
             button_show_hide('show', 'new_note')
+            create_tag_menu();
         }
         container.style.display = 'none'
         chars = '';
