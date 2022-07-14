@@ -8,6 +8,8 @@ var lista = '';
 var noto_was_displayed = false
 var note_is_trash = false
 var displayed_note_id = 0;
+// 
+var note_was_saved = false;
 // funcion new note
 var new_note_clicked = false
 // funcion restore
@@ -123,7 +125,7 @@ const clickId = (event)=>{
     }
     if(elementClass == 'sugested_tag_element'){
         select_predicted_tags(event, true)
-    }console.log(document.getElementById('container_note'))
+    }
     
     if(document.getElementById('container_note')){
         if(element.id != 'tag'){
@@ -183,19 +185,25 @@ const keyupId = (event)=>{
     elementId = element.id;
     elementClass = element.className;
 
-    if (element.parentNode.id == 'main_area' || 
-        element.parentNode.id == 'tags_nota' &&
+    if ((element.parentNode.id == 'main_area' || 
+        element.parentNode.id == 'tags_nota') &&
         document.getElementById('titulo_nota').value != ''){
-        button_show_hide('show', 'save_note');
-        button_show_hide('hide', 'new_note');
-        button_show_hide('hide', 'restore');
-       
-        if(noto_was_displayed){
+        
+        if(note_was_saved == false){
+        
+            button_show_hide('show', 'save_note');
+            button_show_hide('hide', 'new_note');
+            button_show_hide('hide', 'restore');
+            }
+             
+        if(noto_was_displayed || note_was_saved){
             save_edited_note(displayed_note_id);
             button_show_hide('hide', 'save_note');
             button_show_hide('show', 'new_note');
             button_show_hide('hide', 'restore');
         }
+    
+        
     };
     
 }
@@ -361,7 +369,7 @@ function display_noto(note_id) {
     });
    
     // esconde boton save y muestra new note
-    
+    button_show_hide('show', 'new_note')
 }
 
 // borra la nota seleccionada
@@ -380,13 +388,14 @@ function save_edited_note(id){
     const titulo = document.getElementById('titulo_nota').value;
     const texto = document.getElementById('ppal_nota').value;
     const tags = get_tags_displayed(id);
-    
+    console.log(tags)
     autosave(id, titulo, texto, tags);
     add_note_to_DOM(id, titulo, texto, tags, 'lista_notas');
 }
 //guarda la nota cuando se da click en el botton save
 function save_note () {
     new_note_clicked = false;
+    note_was_saved = true;
     const save_note_values = saveNotoToDb();
     console.log(save_note_values.tags)
     let [id, titulo, texto, tags]= [Number(save_note_values.id),
@@ -400,7 +409,8 @@ function save_note () {
         titulo = save_note_values.titulo;
     }
     add_note_to_DOM(id, titulo, texto, tags, 'lista_notas')
-    noto_was_displayed = false
+    noto_was_displayed = false;
+    displayed_note_id = id;
 }
 
 // limpia text area cuando se clickea el boton new note
@@ -411,6 +421,7 @@ function new_note() {
     document.getElementById('tags_nota').innerHTML = "Tags";
     button_show_hide('hide', 'new_note');
     noto_was_displayed = false;
+    note_was_saved = false;
 }
 
 function create_tag_text (_span, event){
@@ -446,7 +457,8 @@ function create_tag_text (_span, event){
         new_tag.contentEditable = false;
         create_tag_menu()
         
-        if(noto_was_displayed){
+        if(noto_was_displayed || note_was_saved){
+            console.log('ahahah')
             save_edited_note(displayed_note_id);
             button_show_hide('show', 'new_note')
             create_tag_menu();
@@ -644,7 +656,7 @@ function select_predicted_tags(event, click){
         new_tag.contentEditable = false;
         create_tag_menu();
         
-        if(noto_was_displayed){
+        if(noto_was_displayed || note_was_saved){
             save_edited_note(displayed_note_id);
             button_show_hide('show', 'new_note')
             create_tag_menu();

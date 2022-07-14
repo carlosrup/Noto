@@ -311,8 +311,8 @@ async function list_all_tags (){
             data.onsuccess = (ev) => {
                 
                 data_cursor = ev.target.result;
-                
-                if (data_cursor){
+              
+                if (data_cursor && data_cursor.value.trash == 'false'){
                     
                     id = data_cursor.value.idDb
                     tags = data_cursor.value.tags
@@ -378,9 +378,7 @@ function create_tag_menu (){
             tagNode = document.createTextNode(element[0]);
             divTags.appendChild(tagNode);
             tags_list.appendChild(divTags);
-            
         });
-        console.log(tags_list.childNodes.length)
     });
 }
 create_tag_menu()
